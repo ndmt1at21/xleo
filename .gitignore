@@ -1,0 +1,13 @@
+.claude
+.env
+.idea
+.vscode
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+*.exe
+*.dll
+*.so

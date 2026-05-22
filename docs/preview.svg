@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 500" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="title-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="header-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#374151"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .col-hdr-bg { fill: #f3f4f6; stroke: #d1d5db; stroke-width: 1; }
+    .row-hdr-bg { fill: #f3f4f6; stroke: #d1d5db; stroke-width: 1; }
+    .hdr-txt    { fill: #6b7280; font-size: 11px; font-weight: 600; text-anchor: middle; }
+    .cell       { fill: #ffffff; stroke: #e5e7eb; stroke-width: 1; }
+    .cell-alt   { fill: #fafafa; stroke: #e5e7eb; stroke-width: 1; }
+    .marker-row { fill: #fffbeb; stroke: #fde68a; stroke-width: 1; }
+    .table-hdr  { fill: url(#header-bg); stroke: #1f2937; }
+    .table-hdr-txt { fill: #ffffff; font-size: 12px; font-weight: 700; }
+    .placeholder { fill: #1f2937; font-family: ui-monospace, Menlo, Monaco, monospace; font-size: 11.5px; }
+    .marker     { fill: #b45309; font-family: ui-monospace, Menlo, Monaco, monospace; font-size: 11.5px; font-weight: 700; }
+    .data       { fill: #0f172a; font-size: 12.5px; }
+    .num        { fill: #0f172a; font-size: 12.5px; text-anchor: end; }
+    .footer-txt { fill: #1f2937; font-size: 12.5px; font-weight: 700; }
+    .label      { fill: #1f2937; font-size: 13px; font-weight: 700; letter-spacing: 0.4px; }
+    .arrow      { fill: #4f46e5; }
+    .caption    { fill: #6b7280; font-size: 11px; }
+    .title      { fill: #0f172a; font-size: 22px; font-weight: 800; }
+    .subtitle   { fill: #64748b; font-size: 13px; }
+    .badge      { fill: #eef2ff; stroke: #c7d2fe; stroke-width: 1; }
+    .badge-txt  { fill: #4338ca; font-size: 10.5px; font-weight: 600; }
+  </style>
+
+  <!-- Title -->
+  <text x="540" y="32" class="title" text-anchor="middle">xleo — template + data → workbook</text>
+  <text x="540" y="54" class="subtitle" text-anchor="middle">vertical {{range}} · horizontal {{hrange}} · styles, colors, and merges survive the render</text>
+
+  <!-- ================================================================== -->
+  <!-- TEMPLATE (left) -->
+  <!-- ================================================================== -->
+  <g transform="translate(24,90)">
+    <rect x="0" y="-22" width="80" height="18" rx="3" class="badge"/>
+    <text x="40" y="-9" class="badge-txt" text-anchor="middle">TEMPLATE</text>
+    <text x="92" y="-9" class="label">template.xlsx</text>
+
+    <!-- column headers A B C D -->
+    <rect x="32" y="0" width="384" height="20" class="col-hdr-bg"/>
+    <text x="80"  y="14" class="hdr-txt">A</text>
+    <text x="176" y="14" class="hdr-txt">B</text>
+    <text x="272" y="14" class="hdr-txt">C</text>
+    <text x="368" y="14" class="hdr-txt">D</text>
+
+    <!-- row numbers 1..7 -->
+    <rect x="0" y="20" width="32" height="252" class="row-hdr-bg"/>
+    <text x="16" y="40" class="hdr-txt">1</text>
+    <text x="16" y="72" class="hdr-txt">2</text>
+    <text x="16" y="104" class="hdr-txt">3</text>
+    <text x="16" y="136" class="hdr-txt">4</text>
+    <text x="16" y="168" class="hdr-txt">5</text>
+    <text x="16" y="200" class="hdr-txt">6</text>
+    <text x="16" y="232" class="hdr-txt">7</text>
+
+    <!-- Row 1: merged title -->
+    <rect x="32" y="20" width="384" height="32" fill="url(#title-bg)" stroke="#3730a3"/>
+    <text x="40" y="40" class="placeholder" fill="#ffffff">{{upper .Title}}</text>
+    <text x="408" y="40" font-size="10" fill="#ffffff" opacity="0.85" text-anchor="end">merged A1:D1</text>
+
+    <!-- Row 2: table header (styled) -->
+    <rect x="32" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="40" y="71" class="table-hdr-txt">ID</text>
+    <rect x="128" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="136" y="71" class="table-hdr-txt">Name</text>
+    <rect x="224" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="232" y="71" class="table-hdr-txt">Qty</text>
+    <rect x="320" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="328" y="71" class="table-hdr-txt">Price</text>
+
+    <!-- Row 3: range open marker -->
+    <rect x="32" y="80" width="384" height="28" class="marker-row"/>
+    <text x="40" y="99" class="marker">{{range .Items}}</text>
+
+    <!-- Row 4: body -->
+    <rect x="32"  y="108" width="96" height="28" class="cell"/>
+    <text x="40"  y="127" class="placeholder">{{.ID}}</text>
+    <rect x="128" y="108" width="96" height="28" class="cell"/>
+    <text x="136" y="127" class="placeholder">{{.Name}}</text>
+    <rect x="224" y="108" width="96" height="28" class="cell"/>
+    <text x="232" y="127" class="placeholder">{{.Qty}}</text>
+    <rect x="320" y="108" width="96" height="28" class="cell"/>
+    <text x="328" y="127" class="placeholder">{{.Price}}</text>
+
+    <!-- Row 5: range close -->
+    <rect x="32" y="136" width="384" height="28" class="marker-row"/>
+    <text x="40" y="155" class="marker">{{end}}</text>
+
+    <!-- Row 6: footer total — merged A6:C6 -->
+    <rect x="32" y="164" width="288" height="28" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="40" y="183" class="footer-txt">Total:</text>
+    <text x="312" y="183" font-size="10" fill="#4338ca" opacity="0.85" text-anchor="end">merged A6:C6</text>
+    <rect x="320" y="164" width="96" height="28" class="cell"/>
+    <text x="328" y="183" class="placeholder">{{.Total}}</text>
+
+    <!-- Legend -->
+    <g transform="translate(0, 210)">
+      <rect x="0" y="0" width="14" height="14" class="marker-row"/>
+      <text x="20" y="11" class="caption">range / end markers</text>
+      <rect x="156" y="0" width="14" height="14" fill="url(#title-bg)" stroke="#3730a3"/>
+      <text x="176" y="11" class="caption">merged cells</text>
+      <rect x="266" y="0" width="14" height="14" class="table-hdr"/>
+      <text x="286" y="11" class="caption">styled / fill</text>
+    </g>
+  </g>
+
+  <!-- ================================================================== -->
+  <!-- ARROW -->
+  <!-- ================================================================== -->
+  <g transform="translate(465,220)">
+    <path d="M0,22 L100,22 L100,10 L130,30 L100,50 L100,38 L0,38 Z" class="arrow"/>
+    <text x="65" y="72" class="caption" text-anchor="middle" font-weight="600">tpl.Render(w, data)</text>
+    <text x="65" y="86" class="caption" text-anchor="middle" opacity="0.75">200K rows &lt; 1s</text>
+  </g>
+
+  <!-- ================================================================== -->
+  <!-- OUTPUT (right) -->
+  <!-- ================================================================== -->
+  <g transform="translate(620,90)">
+    <rect x="0" y="-22" width="80" height="18" rx="3" fill="#d1fae5" stroke="#86efac"/>
+    <text x="40" y="-9" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">OUTPUT</text>
+    <text x="92" y="-9" class="label">output.xlsx</text>
+
+    <!-- column headers -->
+    <rect x="32" y="0" width="384" height="20" class="col-hdr-bg"/>
+    <text x="80"  y="14" class="hdr-txt">A</text>
+    <text x="176" y="14" class="hdr-txt">B</text>
+    <text x="272" y="14" class="hdr-txt">C</text>
+    <text x="368" y="14" class="hdr-txt">D</text>
+
+    <!-- row numbers 1..7 -->
+    <rect x="0" y="20" width="32" height="252" class="row-hdr-bg"/>
+    <text x="16" y="40" class="hdr-txt">1</text>
+    <text x="16" y="68" class="hdr-txt">2</text>
+    <text x="16" y="96" class="hdr-txt">3</text>
+    <text x="16" y="124" class="hdr-txt">4</text>
+    <text x="16" y="152" class="hdr-txt">5</text>
+    <text x="16" y="180" class="hdr-txt">6</text>
+
+    <!-- Row 1: merged title rendered -->
+    <rect x="32" y="20" width="384" height="32" fill="url(#title-bg)" stroke="#3730a3"/>
+    <text x="224" y="42" font-size="15" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="1">SALES REPORT</text>
+
+    <!-- Row 2: table header — styled fill preserved -->
+    <rect x="32" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="40" y="71" class="table-hdr-txt">ID</text>
+    <rect x="128" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="136" y="71" class="table-hdr-txt">Name</text>
+    <rect x="224" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="232" y="71" class="table-hdr-txt">Qty</text>
+    <rect x="320" y="52" width="96" height="28" class="table-hdr"/>
+    <text x="328" y="71" class="table-hdr-txt">Price</text>
+
+    <!-- Row 3: data row 1 -->
+    <rect x="32"  y="80" width="96" height="28" class="cell"/>
+    <text x="40"  y="99" class="data">A001</text>
+    <rect x="128" y="80" width="96" height="28" class="cell"/>
+    <text x="136" y="99" class="data">T-shirt</text>
+    <rect x="224" y="80" width="96" height="28" class="cell"/>
+    <text x="312" y="99" class="num">100</text>
+    <rect x="320" y="80" width="96" height="28" class="cell"/>
+    <text x="408" y="99" class="num">1,000</text>
+
+    <!-- Row 4: data row 2 (alt) -->
+    <rect x="32"  y="108" width="96" height="28" class="cell-alt"/>
+    <text x="40"  y="127" class="data">A002</text>
+    <rect x="128" y="108" width="96" height="28" class="cell-alt"/>
+    <text x="136" y="127" class="data">Jeans</text>
+    <rect x="224" y="108" width="96" height="28" class="cell-alt"/>
+    <text x="312" y="127" class="num">50</text>
+    <rect x="320" y="108" width="96" height="28" class="cell-alt"/>
+    <text x="408" y="127" class="num">2,400</text>
+
+    <!-- Row 5: data row 3 -->
+    <rect x="32"  y="136" width="96" height="28" class="cell"/>
+    <text x="40"  y="155" class="data">A003</text>
+    <rect x="128" y="136" width="96" height="28" class="cell"/>
+    <text x="136" y="155" class="data">Sneakers</text>
+    <rect x="224" y="136" width="96" height="28" class="cell"/>
+    <text x="312" y="155" class="num">30</text>
+    <rect x="320" y="136" width="96" height="28" class="cell"/>
+    <text x="408" y="155" class="num">4,800</text>
+
+    <!-- Row 6: total — merged A6:C6 preserved -->
+    <rect x="32" y="164" width="288" height="28" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="40" y="183" class="footer-txt">Total:</text>
+    <rect x="320" y="164" width="96" height="28" class="cell"/>
+    <text x="408" y="183" class="num" font-weight="700">8,200</text>
+
+    <!-- annotation -->
+    <g transform="translate(0,210)">
+      <text x="0" y="11" class="caption" font-weight="600">{{range .Items}}</text>
+      <text x="82" y="11" class="caption">expanded into 3 rows · merge A6:C6 preserved · header styling cloned</text>
+    </g>
+  </g>
+</svg>
