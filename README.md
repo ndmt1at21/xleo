@@ -1,6 +1,12 @@
 ![alt text](docs/xleo.png)
 
 # xleo
+
+[![test](https://github.com/ndmt1at21/xleo/actions/workflows/test.yml/badge.svg)](https://github.com/ndmt1at21/xleo/actions/workflows/test.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/ndmt1at21/xleo.svg)](https://pkg.go.dev/github.com/ndmt1at21/xleo)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ndmt1at21/xleo)](https://goreportcard.com/report/github.com/ndmt1at21/xleo)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A Go library for rendering dynamic Excel templates (template `.xlsx` + data → complete `.xlsx`).
 Supports variable substitution inside cells, **vertical** loops (rows), **horizontal** loops
 (columns), nested loops, outer-context access, and built-in helper functions.
